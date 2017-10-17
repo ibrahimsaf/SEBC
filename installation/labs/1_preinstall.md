@@ -1,4 +1,5 @@
 ##  Check the swapiness using this command: 
+
 [centos@ip-172-31-4-12 ~]$ sysctl vm.swappiness
 vm.swappiness = 30
 ---
@@ -20,7 +21,8 @@ tmpfs           1.6G     0  1.6G   0% /run/user/1000
 
 ---
 
-##  Disable transparent hugepage support  
+##  Disable transparent hugepage support   
+
 echo never > /sys/kernel/mm/transparent_hugepage/enabled
 ---
 To disable THP, add the following lines to the end of /etc/rc.local before the exit line (if present), and reboot the affected servers:
@@ -38,6 +40,7 @@ echo no > /sys/kernel/mm/redhat_transparent_hugepage/khugepaged/defrag
 ---
 
 ##  Verify DNS and reverse DNS configuration avec nslookup 
+
 yum -y install bind-utils
 ---
 [root@ip-172-31-4-12 ~]# nslookup 172.31.4.12
@@ -60,6 +63,7 @@ Address: 172.31.4.12
 ---
 
 ##  Network interfaces: 
+
 ---
 [root@ip-172-31-4-12 ~]# ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN
@@ -77,6 +81,7 @@ Address: 172.31.4.12
 ---
 	   
 ##  NTP and NSCD services: 
+
 ---
 yum -y install nscd ntp
 ---
