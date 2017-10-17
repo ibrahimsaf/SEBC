@@ -1,13 +1,13 @@
-<!--  Check the swapiness using this command: -->
+##  Check the swapiness using this command: 
 [centos@ip-172-31-4-12 ~]$ sysctl vm.swappiness
 vm.swappiness = 30
-
+---
 To set the swapiness to 1, on all machines:
 Edit the /etc/sysctl.conf file and add at the end: "vm.swappiness=1"
 echo "vm.swappiness=1" >> /etc/sysctl.conf
 sysctl vm.swappiness=1
 
-
+---
 [root@ip-172-31-4-12 ~]# df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/xvda1      100G  878M  100G   1% /
@@ -18,13 +18,13 @@ tmpfs           7.7G     0  7.7G   0% /sys/fs/cgroup
 tmpfs           1.6G     0  1.6G   0% /run/user/1000
 
 
+---
 
-
-<!--  Disable transparent hugepage support  -->
+##  Disable transparent hugepage support  
 echo never > /sys/kernel/mm/transparent_hugepage/enabled
-
+---
 To disable THP, add the following lines to the end of /etc/rc.local before the exit line (if present), and reboot the affected servers:
-
+---
 echo never > /sys/kernel/mm/transparent_hugepage/enabled
 echo never > /sys/kernel/mm/transparent_hugepage/defrag
 echo 0 > /sys/kernel/mm/transparent_hugepage/khugepaged/defrag
@@ -35,32 +35,32 @@ echo 0 > /sys/kernel/mm/redhat_transparent_hugepage/khugepaged/defrag
 echo no > /sys/kernel/mm/redhat_transparent_hugepage/khugepaged/defrag
 
 
+---
 
-
-<!-- Verify DNS and reverse DNS configuration avec nslookup -->
+##  Verify DNS and reverse DNS configuration avec nslookup 
 yum -y install bind-utils
-
+---
 [root@ip-172-31-4-12 ~]# nslookup 172.31.4.12
 Server:         172.31.0.2
 Address:        172.31.0.2#53
-
+---
 Non-authoritative answer:
 12.4.31.172.in-addr.arpa        name = ip-172-31-4-12.eu-central-1.compute.internal.
-
+---
 Authoritative answers can be found from:
-
+---
 [root@ip-172-31-4-12 ~]# nslookup ip-172-31-4-12.eu-central-1.compute.internal.
 Server:         172.31.0.2
 Address:        172.31.0.2#53
-
+---
 Non-authoritative answer:
 Name:   ip-172-31-4-12.eu-central-1.compute.internal
 Address: 172.31.4.12
+---
+---
 
-
-
-<!-- Network interfaces: -->
-
+##  Network interfaces: 
+---
 [root@ip-172-31-4-12 ~]# ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -74,12 +74,12 @@ Address: 172.31.4.12
        valid_lft 3375sec preferred_lft 3375sec
     inet6 fe80::8e2:c2ff:fe5c:c3c0/64 scope link
        valid_lft forever preferred_lft forever
-
+---
 	   
-<!--  NTP and NSCD services: -->
-
+##  NTP and NSCD services: 
+---
 yum -y install nscd ntp
-
+---
 [root@ip-172-31-4-12 ~]# service nscd status
 Redirecting to /bin/systemctl status  nscd.service
 ● nscd.service - Name Service Cache Daemon
@@ -103,7 +103,7 @@ Redirecting to /bin/systemctl status  nscd.service
  Main PID: 9377 (nscd)
    CGroup: /system.slice/nscd.service
            └─9377 /usr/sbin/nscd
-
+---
 Oct 17 12:37:24 ip-172-31-4-12 nscd[9377]: 9377 monitoring directory `/etc` (2)
 Oct 17 12:37:24 ip-172-31-4-12 nscd[9377]: 9377 monitoring file `/etc/resolv.c...)
 Oct 17 12:37:24 ip-172-31-4-12 nscd[9377]: 9377 monitoring directory `/etc` (2)
@@ -124,7 +124,7 @@ Redirecting to /bin/systemctl status  ntpd.service
  Main PID: 9418 (ntpd)
    CGroup: /system.slice/ntpd.service
            └─9418 /usr/sbin/ntpd -u ntp:ntp -g
-
+---
 Oct 17 12:37:38 ip-172-31-4-12 ntpd[9418]: Listen and drop on 1 v6wildcard :: ...3
 Oct 17 12:37:38 ip-172-31-4-12 ntpd[9418]: Listen normally on 2 lo 127.0.0.1 U...3
 Oct 17 12:37:38 ip-172-31-4-12 ntpd[9418]: Listen normally on 3 eth0 172.31.4....3
