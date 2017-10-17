@@ -1,4 +1,4 @@
-Check the swapiness using this command:
+<!--  Check the swapiness using this command: -->
 [centos@ip-172-31-4-12 ~]$ sysctl vm.swappiness
 vm.swappiness = 30
 
@@ -6,11 +6,6 @@ To set the swapiness to 1, on all machines:
 Edit the /etc/sysctl.conf file and add at the end: "vm.swappiness=1"
 echo "vm.swappiness=1" >> /etc/sysctl.conf
 sysctl vm.swappiness=1
-
-[root@ip-172-31-4-12 ~]# echo "vm.swappiness=1" >> /etc/sysctl.conf
-[root@ip-172-31-4-12 ~]# sysctl vm.swappiness=1
-vm.swappiness = 1
-
 
 
 [root@ip-172-31-4-12 ~]# df -h
@@ -23,7 +18,9 @@ tmpfs           7.7G     0  7.7G   0% /sys/fs/cgroup
 tmpfs           1.6G     0  1.6G   0% /run/user/1000
 
 
-Disable transparent hugepage support
+
+
+<!--  Disable transparent hugepage support  -->
 echo never > /sys/kernel/mm/transparent_hugepage/enabled
 
 To disable THP, add the following lines to the end of /etc/rc.local before the exit line (if present), and reboot the affected servers:
@@ -38,6 +35,10 @@ echo 0 > /sys/kernel/mm/redhat_transparent_hugepage/khugepaged/defrag
 echo no > /sys/kernel/mm/redhat_transparent_hugepage/khugepaged/defrag
 
 
+
+
+<!-- Verify DNS and reverse DNS configuration avec nslookup -->
+yum -y install bind-utils
 
 [root@ip-172-31-4-12 ~]# nslookup 172.31.4.12
 Server:         172.31.0.2
@@ -58,7 +59,7 @@ Address: 172.31.4.12
 
 
 
-
+<!-- Network interfaces: -->
 
 [root@ip-172-31-4-12 ~]# ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN
@@ -75,11 +76,8 @@ Address: 172.31.4.12
        valid_lft forever preferred_lft forever
 
 	   
+<!--  NTP and NSCD services: -->
 
-qdsffsqdcsqdcsq
-
-nslookup
-yum -y install bind-utils
 yum -y install nscd ntp
 
 [root@ip-172-31-4-12 ~]# service nscd status
