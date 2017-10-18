@@ -1,3 +1,4 @@
+````
 mysql> CHANGE MASTER TO MASTER_HOST='ip-172-31-4-12.eu-central-1.compute.internal.', MASTER_USER='replica', MASTER_PASSWORD='azerty', MASTER_LOG_FILE='mysql_binary_log.000003', MASTER_LOG_POS=1401;
 Query OK, 0 rows affected (0.00 sec)
 
@@ -47,5 +48,6 @@ Last_SQL_Error:
 Replicate_Ignore_Server_Ids:
 Master_Server_Id: 1
 1 row in set (0.00 sec)
+````
 
 The replication is working

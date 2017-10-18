@@ -10,6 +10,7 @@ echo "vm.swappiness=1" >> /etc/sysctl.conf
 sysctl vm.swappiness=1
 ````
 
+List partitions:
 ````
 [root@ip-172-31-4-12 ~]# df -h
 Filesystem      Size  Used Avail Use% Mounted on
