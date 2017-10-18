@@ -32,5 +32,9 @@ List all CM users
 ````
 Report the database server in use by CM
 ````
-
+[centos@ip-172-31-4-12 ~]$ curl -u ibrahimsaf:cloudera 'http://localhost:7180/api/v14/cm/scmDbInfo'
+{
+  "scmDbType" : "MYSQL",
+  "embeddedDbUsed" : false
+}
 ````
