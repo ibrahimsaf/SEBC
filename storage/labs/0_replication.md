@@ -1,31 +1,32 @@
 ###### Replicate to another cluster:
 ```
-> [centos@ip-172-31-4-12 /]$ sudo -u hdfs hdfs dfs /user/ibrahim/ 
-> [centos@ip-172-31-4-12 /]$ sudo -u hdfs hdfs dfs /user/ibrahim/source
-> [centos@ip-172-31-4-12 /]$ sudo -u hdfs hdfs dfs /user/ibrahim/destination
-> [centos@ip-172-31-4-12 /]$ sudo -u hdfs hdfs dfs -chown centos /user/ibrahim/source
-> [centos@ip-172-31-4-12 /]$ sudo -u hdfs hdfs dfs -chown centos /user/ibrahim/destination
+[centos@ip-172-31-4-12 /]$ sudo -u hdfs hdfs dfs /user/ibrahim/ 
+[centos@ip-172-31-4-12 /]$ sudo -u hdfs hdfs dfs /user/ibrahim/source
+[centos@ip-172-31-4-12 /]$ sudo -u hdfs hdfs dfs /user/ibrahim/destination
+[centos@ip-172-31-4-12 /]$ sudo -u hdfs hdfs dfs -chown centos /user/ibrahim/source
+[centos@ip-172-31-4-12 /]$ sudo -u hdfs hdfs dfs -chown centos /user/ibrahim/destination
 ```
 
-Create a 500MB file using teragen : The execution duration is ~8seconds
-
+###### Create a 500MB file using teragen : The execution duration is ~8seconds
+```
 [centos@ip-172-31-4-12 /]$ time hadoop jar /opt/cloudera/parcels/CDH/jars/hadoop-examples.jar teragen 5000000 /user/ibrahim/source/file_500MB
 real    0m8.845s
 user    0m13.849s
 sys     0m0.497s
+```
 
-Copying the file using distcp tooks ~8seconds:
-
+###### Copying the file using distcp tooks ~8seconds:
+```
 [centos@ip-172-31-4-12 /]$ time hadoop distcp /user/ibrahim/source/file_500MB /user/ibrahim/destination/file_500MB
 real    0m8.834s
 user    0m10.893s
 sys     0m1.070s
+```
 
 
 
-
-Results from the copy with distcp:
-
+###### Results from the copy with distcp:
+```
 [centos@ip-172-31-4-12 ~]$ hdfs fsck /user/ibrahim/source/file_500MB -files -blocks
 Connecting to namenode via http://ip-172-31-7-61.eu-central-1.compute.internal:50070
 FSCK started by centos (auth:SIMPLE) from /172.31.4.12 for path /user/ibrahim/source/file_500MB at Tue Oct 17 20:27:09 UTC 2017
@@ -58,7 +59,9 @@ FSCK ended at Tue Oct 17 20:27:09 UTC 2017 in 2 milliseconds
 
 
 The filesystem under path '/user/ibrahim/source/file_500MB' is HEALTHY
+```
 
+```
 [centos@ip-172-31-4-12 ~]$ hdfs fsck /user/ibrahim/destination/file_500MB -files -blocks
 Connecting to namenode via http://ip-172-31-7-61.eu-central-1.compute.internal:50070
 FSCK started by centos (auth:SIMPLE) from /172.31.4.12 for path /user/ibrahim/destination/file_500MB at Tue Oct 17 20:28:32 UTC 2017
@@ -91,12 +94,14 @@ FSCK ended at Tue Oct 17 20:28:32 UTC 2017 in 2 milliseconds
 
 
 The filesystem under path '/user/ibrahim/destination/file_500MB' is HEALTHY
+```
 
 
-
-Result from the copy with BDR:
+###### Result from the copy with BDR:
 Using the cloudera manager, I create a scheduling task with immediate  execution to the /user/ibrahim/destinationBDR destination folder:
 
+```
+[centos@ip-172-31-4-12 ~]$ hdfs fsck /user/ibrahim/destinationBDR/ -files -blocks
 Connecting to namenode via http://ip-172-31-7-61.eu-central-1.compute.internal:50070
 FSCK started by centos (auth:SIMPLE) from /172.31.4.12 for path /user/ibrahim/destinationBDR/ at Wed Oct 18 07:58:42 UTC 2017
 /user/ibrahim/destinationBDR/ <dir>
@@ -130,3 +135,4 @@ FSCK ended at Wed Oct 18 07:58:42 UTC 2017 in 2 milliseconds
 
 
 The filesystem under path '/user/ibrahim/destinationBDR/' is HEALTHY
+```
