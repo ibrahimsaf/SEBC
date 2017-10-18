@@ -1,10 +1,11 @@
 ###### Replicate to another cluster:
+```
 > [centos@ip-172-31-4-12 /]$ sudo -u hdfs hdfs dfs /user/ibrahim/ 
 > [centos@ip-172-31-4-12 /]$ sudo -u hdfs hdfs dfs /user/ibrahim/source
 > [centos@ip-172-31-4-12 /]$ sudo -u hdfs hdfs dfs /user/ibrahim/destination
 > [centos@ip-172-31-4-12 /]$ sudo -u hdfs hdfs dfs -chown centos /user/ibrahim/source
 > [centos@ip-172-31-4-12 /]$ sudo -u hdfs hdfs dfs -chown centos /user/ibrahim/destination
-
+```
 
 Create a 500MB file using teragen : The execution duration is ~8seconds
 
