@@ -21,13 +21,14 @@ do
 
          # Set reducer JVM heap 
          RED_MB=`echo "($k*0.8)/1" | bc` 
-
+		echo 'Teragen parameters: Dmapreduce.job.maps='$i' mapreduce.map.memory.mb='$k' Dmapreduce.map.java.opts.max.heap='$MAP_MB
         time ${HADOOP}/hadoop jar ${MR}/hadoop-examples.jar teragen \
                      -Dmapreduce.job.maps=$i \
                      -Dmapreduce.map.memory.mb=$k \
                      -Dmapreduce.map.java.opts.max.heap=$MAP_MB \
                      51200000 /results/tg-10GB-${i}-${j}-${k} 1>tera_${i}_${j}_${k}.out 2>tera_${i}_${j}_${k}.err                       
 
+	   echo 'Terasort parameters: Dmapreduce.job.maps='$i' mapreduce.job.reduces='$j' mapreduce.map.memory.mb='$k' mapreduce.map.java.opts.max.heap='$MAP_MB' mapreduce.reduce.memory.mb='$k' mapreduce.reduce.java.opts.max.heap='$RED_MB
        time ${HADOOP}/hadoop jar $MR/hadoop-examples.jar terasort \
                      -Dmapreduce.job.maps=$i \
                      -Dmapreduce.job.reduces=$j \
