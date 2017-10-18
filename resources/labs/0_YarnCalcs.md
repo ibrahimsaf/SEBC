@@ -6,8 +6,6 @@ Impala, Hbase and solr are not used actually, so we did not allow ressources. No
 
 ````	
 
-
-
 What criteria affects workload factor? What does a value of 1, 2, or 4 signify?
 ````
 
