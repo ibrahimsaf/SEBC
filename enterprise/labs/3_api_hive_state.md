@@ -29,7 +29,7 @@ Starting hive:
   }
 ````
 
-Get Hive state:
+Get Hive state: We can see that the hive service is started and in good state
 ````
 [centos@ip-172-31-4-12 ~]$ curl -u ibrahimsaf:cloudera'http://localhost:7180/api/v1/clusters/ibrahimsaf-SEBC/services/hive'
 {
