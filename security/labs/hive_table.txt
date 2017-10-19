@@ -1,0 +1,3 @@
+name;age;address
+Ibrahim;80;yuhuh  uhiu hiuh
+Noel;20;oiuhnonjon
