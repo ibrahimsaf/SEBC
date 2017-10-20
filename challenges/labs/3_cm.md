@@ -1,14 +1,15 @@
 HDFS users dir
 ````
 [root@ip-172-31-19-162 ~]# hdfs dfs -ls /user
-Found 6 items
-drwxr-xr-x   - hdfs   supergroup          0 2017-10-20 08:56 /user/ernest
-drwxrwxrwx   - mapred hadoop              0 2017-10-20 08:49 /user/history
-drwxrwxr-t   - hive   hive                0 2017-10-20 08:50 /user/hive
-drwxrwxr-x   - hue    hue                 0 2017-10-20 08:50 /user/hue
-drwxrwxr-x   - oozie  oozie               0 2017-10-20 08:51 /user/oozie
-drwxr-xr-x   - hdfs   supergroup          0 2017-10-20 08:56 /user/siwicki
-
+Found 8 items
+drwxr-xr-x   - admin   admin               0 2017-10-20 09:00 /user/admin
+drwxr-xr-x   - ernest  ernest              0 2017-10-20 08:56 /user/ernest
+drwxr-xr-x   - hdfs    supergroup          0 2017-10-20 08:59 /user/hdfs
+drwxrwxrwx   - mapred  hadoop              0 2017-10-20 08:49 /user/history
+drwxrwxr-t   - hive    hive                0 2017-10-20 08:50 /user/hive
+drwxrwxr-x   - hue     hue                 0 2017-10-20 08:50 /user/hue
+drwxrwxr-x   - oozie   oozie               0 2017-10-20 08:51 /user/oozie
+drwxr-xr-x   - siwicki siwicki             0 2017-10-20 08:56 /user/siwicki
 ````
 
 Output from the CM API call 
