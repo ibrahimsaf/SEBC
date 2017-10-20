@@ -1,6 +1,6 @@
 List the cloud provider you are using (AWS, GCE, Azure, other)
 ````
-AWS: 5 virtual machine m3.xlarge
+AWS: 5 virtual machines type m3.xlarge
 ````
 List the Linux release you have chosen
 ````
