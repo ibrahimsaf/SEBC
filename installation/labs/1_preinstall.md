@@ -21,8 +21,7 @@ tmpfs           7.7G   17M  7.7G   1% /run
 tmpfs           7.7G     0  7.7G   0% /sys/fs/cgroup
 tmpfs           1.6G     0  1.6G   0% /run/user/1000
 ````
-
-
+* @mfe: `df` lists mounted file systems and space available, not partitions. Try `lsblk`
 
 Disable transparent hugepage support   
 ````
